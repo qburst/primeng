@@ -121,7 +121,7 @@ import { FileBeforeUploadEvent, FileProgressEvent, FileRemoveEvent, FileSelectEv
                 [ngClass]="{ 'p-button p-component p-fileupload-choose': true, 'p-button-icon-only': !basicButtonLabel, 'p-fileupload-choose-selected': hasFiles(), 'p-focus': focus, 'p-disabled': disabled }"
                 [ngStyle]="style"
                 [class]="styleClass"
-                (mouseup)="onBasicUploaderClick()"
+                (click)="onBasicUploaderClick($event)"
                 (keydown)="onBasicKeydown($event)"
                 tabindex="0"
                 pRipple
@@ -526,10 +526,12 @@ export class FileUpload implements AfterViewInit, AfterContentInit, OnInit, OnDe
     }
 
     choose() {
+        console.log('Helloooo');
         this.advancedFileInput?.nativeElement.click();
     }
 
     onFileSelect(event: any) {
+        console.log('File selected');
         if (event.type !== 'drop' && this.isIE11() && this.duplicateIEEvent) {
             this.duplicateIEEvent = false;
             return;
